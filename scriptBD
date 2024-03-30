@@ -1,0 +1,43 @@
+CREATE DATABASE ucheb
+go 
+USE ucheb
+CREATE TABLE Artifacts (
+    artifact_id INT PRIMARY KEY IDENTITY(1,1),
+    name NVARCHAR(100),
+    category NVARCHAR(50),
+    description NVARCHAR(MAX),
+    acquisition_date DATE,
+    condition NVARCHAR(50),
+    cost MONEY,
+);
+
+GO
+CREATE TABLE Museums (
+    museum_id INT PRIMARY KEY IDENTITY(1,1),
+    museum_name NVARCHAR(100),
+    address NVARCHAR(200),
+    city NVARCHAR(100),
+    country NVARCHAR(100),
+    contact_phone NVARCHAR(20)
+);
+
+GO
+INSERT INTO Artifacts (name, category, description, acquisition_date, condition, cost)
+VALUES 
+('Статуя Давида', 'Скульптура', 'Мраморная скульптура Давида, созданная Микеланджело.', '1504.01.01', 'Отличное состояние', 250000),
+('Мона Лиза', 'Живопись', 'Портрет Леонардо да Винчи.', '1503.01.01', 'Хорошее состояние', 180000),
+('Библия Гутенберга', 'Рукопись', 'Первая книга, напечатанная с помощью печатного пресса, созданного Иоганном Гутенбергом.', '1455.01.01', 'Умеренное состояние', 500000),
+('Венера Милосская', 'Скульптура', 'Мраморная скульптура Венеры, обнаруженная на острове Милос.', '1000.01.01', 'Повреждено', 350000),
+('Собор Пизанской башни', 'Архитектура', 'Собор, расположенный в Пизе, входящий в комплекс Пизанской башни.', '1063.01.01', 'Отличное состояние', 700000);
+
+INSERT INTO Museums (museum_name, address, city, country, contact_phone)
+VALUES 
+('Лувр', 'Rue de Rivoli, 75001 Paris', 'Paris', 'France', '+33 1 40 20 50 50'),
+('Британский музей', 'Great Russell St, Bloomsbury, London WC1B 3DG', 'London', 'United Kingdom', '+44 20 7323 8299'),
+('Музей Метрополитен', '1000 5th Ave, New York, NY 10028', 'New York', 'United States', '+1 212-535-7710'),
+('Эрмитаж', 'Palace Square, 2, St Petersburg, Russia', 'St Petersburg', 'Russia', '+7 812 710-90-79'),
+('Музей Лувра Абу-Даби', 'Sadeem Street, Saadiyat Cultural District, Abu Dhabi, UAE', 'Abu Dhabi', 'United Arab Emirates', '+971 600 56 55 66');
+
+ALTER TABLE Artifacts
+ADD museum_id INT,
+FOREIGN KEY (museum_id) REFERENCES Museums(museum_id);
