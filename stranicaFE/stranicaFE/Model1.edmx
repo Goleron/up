@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище uchebModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artifacts">
+          <Key>
+            <PropertyRef Name="artifact_id" />
+          </Key>
+          <Property Name="artifact_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" />
+          <Property Name="category" Type="nvarchar" MaxLength="50" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="acquisition_date" Type="date" />
+          <Property Name="condition" Type="nvarchar" MaxLength="50" />
+          <Property Name="cost" Type="money" />
+          <Property Name="museum_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Museums">
+          <Key>
+            <PropertyRef Name="museum_id" />
+          </Key>
+          <Property Name="museum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="museum_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="address" Type="nvarchar" MaxLength="200" />
+          <Property Name="city" Type="nvarchar" MaxLength="100" />
+          <Property Name="country" Type="nvarchar" MaxLength="100" />
+          <Property Name="contact_phone" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK__Artifacts__museu__5FB337D6">
+          <End Role="Museums" Type="Self.Museums" Multiplicity="0..1" />
+          <End Role="Artifacts" Type="Self.Artifacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Museums">
+              <PropertyRef Name="museum_id" />
+            </Principal>
+            <Dependent Role="Artifacts">
+              <PropertyRef Name="museum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище uchebModelContainer">
+          <EntitySet Name="Artifacts" EntityType="Self.Artifacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Museums" EntityType="Self.Museums" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Artifacts__museu__5FB337D6" Association="Self.FK__Artifacts__museu__5FB337D6">
+            <End Role="Museums" EntitySet="Museums" />
+            <End Role="Artifacts" EntitySet="Artifacts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="uchebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artifacts">
+          <Key>
+            <PropertyRef Name="artifact_id" />
+          </Key>
+          <Property Name="artifact_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="acquisition_date" Type="DateTime" Precision="0" />
+          <Property Name="condition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="museum_id" Type="Int32" />
+          <NavigationProperty Name="Museums" Relationship="Self.FK__Artifacts__museu__5FB337D6" FromRole="Artifacts" ToRole="Museums" />
+        </EntityType>
+        <EntityType Name="Museums">
+          <Key>
+            <PropertyRef Name="museum_id" />
+          </Key>
+          <Property Name="museum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="museum_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="contact_phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Artifacts" Relationship="Self.FK__Artifacts__museu__5FB337D6" FromRole="Museums" ToRole="Artifacts" />
+        </EntityType>
+        <Association Name="FK__Artifacts__museu__5FB337D6">
+          <End Role="Museums" Type="Self.Museums" Multiplicity="0..1" />
+          <End Role="Artifacts" Type="Self.Artifacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Museums">
+              <PropertyRef Name="museum_id" />
+            </Principal>
+            <Dependent Role="Artifacts">
+              <PropertyRef Name="museum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="uchebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artifacts" EntityType="Self.Artifacts" />
+          <EntitySet Name="Museums" EntityType="Self.Museums" />
+          <AssociationSet Name="FK__Artifacts__museu__5FB337D6" Association="Self.FK__Artifacts__museu__5FB337D6">
+            <End Role="Museums" EntitySet="Museums" />
+            <End Role="Artifacts" EntitySet="Artifacts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище uchebModelContainer" CdmEntityContainer="uchebEntities">
+          <EntitySetMapping Name="Artifacts">
+            <EntityTypeMapping TypeName="uchebModel.Artifacts">
+              <MappingFragment StoreEntitySet="Artifacts">
+                <ScalarProperty Name="artifact_id" ColumnName="artifact_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="acquisition_date" ColumnName="acquisition_date" />
+                <ScalarProperty Name="condition" ColumnName="condition" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="museum_id" ColumnName="museum_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Museums">
+            <EntityTypeMapping TypeName="uchebModel.Museums">
+              <MappingFragment StoreEntitySet="Museums">
+                <ScalarProperty Name="museum_id" ColumnName="museum_id" />
+                <ScalarProperty Name="museum_name" ColumnName="museum_name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

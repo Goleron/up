@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище uchebModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Artifacts">
+    <Key>
+      <PropertyRef Name="artifact_id" />
+    </Key>
+    <Property Name="artifact_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" />
+    <Property Name="category" Type="nvarchar" MaxLength="50" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="acquisition_date" Type="date" />
+    <Property Name="condition" Type="nvarchar" MaxLength="50" />
+    <Property Name="cost" Type="money" />
+    <Property Name="museum_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Museums">
+    <Key>
+      <PropertyRef Name="museum_id" />
+    </Key>
+    <Property Name="museum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="museum_name" Type="nvarchar" MaxLength="100" />
+    <Property Name="address" Type="nvarchar" MaxLength="200" />
+    <Property Name="city" Type="nvarchar" MaxLength="100" />
+    <Property Name="country" Type="nvarchar" MaxLength="100" />
+    <Property Name="contact_phone" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__Artifacts__museu__5FB337D6">
+    <End Role="Museums" Type="Self.Museums" Multiplicity="0..1" />
+    <End Role="Artifacts" Type="Self.Artifacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Museums">
+        <PropertyRef Name="museum_id" />
+      </Principal>
+      <Dependent Role="Artifacts">
+        <PropertyRef Name="museum_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище uchebModelContainer">
+    <EntitySet Name="Artifacts" EntityType="Self.Artifacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Museums" EntityType="Self.Museums" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Artifacts__museu__5FB337D6" Association="Self.FK__Artifacts__museu__5FB337D6">
+      <End Role="Museums" EntitySet="Museums" />
+      <End Role="Artifacts" EntitySet="Artifacts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

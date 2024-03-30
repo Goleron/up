@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище uchebModelContainer" CdmEntityContainer="uchebEntities">
+    <EntitySetMapping Name="Artifacts">
+      <EntityTypeMapping TypeName="uchebModel.Artifacts">
+        <MappingFragment StoreEntitySet="Artifacts">
+          <ScalarProperty Name="artifact_id" ColumnName="artifact_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="acquisition_date" ColumnName="acquisition_date" />
+          <ScalarProperty Name="condition" ColumnName="condition" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="museum_id" ColumnName="museum_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Museums">
+      <EntityTypeMapping TypeName="uchebModel.Museums">
+        <MappingFragment StoreEntitySet="Museums">
+          <ScalarProperty Name="museum_id" ColumnName="museum_id" />
+          <ScalarProperty Name="museum_name" ColumnName="museum_name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
