@@ -25,7 +25,28 @@ namespace stranicaFE
         public Artifact()
         {
             InitializeComponent();
+            // В конструкторе класса после InitializeComponent();
+            ArtifactDgr.LoadingRow += ArtifactDgr_LoadingRow;
+
+            void ArtifactDgr_LoadingRow(object sender, DataGridRowEventArgs e)
+            {
+                e.Row.MouseEnter += Row_MouseEnter;
+            }
+
+                void Row_MouseEnter(object sender, MouseEventArgs e)
+{
+                    if(sender is DataGridRow row && row.DataContext is Artifacts artifact)
+                    {
+                        TextBox1.Text = artifact.name;
+                        TextBox2.Text = artifact.description;
+                        TextBox3.Text = artifact.acquisition_date.ToString();
+                        TextBox4.Text = artifact.condition;
+                        TextBox5.Text = artifact.cost.ToString();
+                     }
+                }
+
             ArtifactDgr.ItemsSource = context.Artifacts.ToList();
+
 
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -33,17 +54,64 @@ namespace stranicaFE
             Artifacts c = new Artifacts();
             c.name = TextBox1.Text;
             c.description = TextBox2.Text;
-            c.acquisition_date = Convert.ToDateTime (TextBox3.Text);
+            DateTime acquisitionDate;
+            if (DateTime.TryParse(TextBox3.Text, out acquisitionDate))
+            {
+                c.acquisition_date = acquisitionDate;
+            }
+            else
+            {
+               
+                MessageBox.Show("Неверный формат даты.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return; 
+            }
             c.condition = TextBox4.Text;
-            c.cost = Convert.ToDecimal (TextBox5.Text);
-
-
+            decimal cost;
+            if (Decimal.TryParse(TextBox5.Text, out cost))
+            {
+                c.cost = cost;
+            }
+            else
+            {
+                MessageBox.Show("Неверный формат стоимости.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return; 
+            }
 
             context.Artifacts.Add(c);
-
             context.SaveChanges();
             ArtifactDgr.ItemsSource = context.Artifacts.ToList();
         }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (ArtifactDgr.SelectedItem != null)
+            {
+                try
+                {
+                    if (ArtifactDgr.SelectedItem != null)
+                    {
+                        var selected = ArtifactDgr.SelectedItem as Artifacts;
+
+                        selected.name = TextBox1.Text;
+                        selected.description = TextBox2.Text;
+                        selected.acquisition_date = Convert.ToDateTime(TextBox3.Text);
+                        selected.condition = TextBox4.Text;
+                        selected.cost = Convert.ToDecimal(TextBox5.Text);
+
+                        context.SaveChanges();
+                        ArtifactDgr.ItemsSource = context.Artifacts.ToList();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Произошла ошибка: {ex.Message}");
+                }
+
+                context.SaveChanges();
+                ArtifactDgr.ItemsSource = context.Artifacts.ToList();
+            }
+        }
+
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             if (ArtifactDgr.SelectedItem != null)
@@ -53,22 +121,7 @@ namespace stranicaFE
             context.SaveChanges();
             ArtifactDgr.ItemsSource = context.Artifacts.ToList();
         }
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (ArtifactDgr.SelectedItem != null)
-            {
-                var selected = ArtifactDgr.SelectedItem as Artifacts;
-
-                selected.name = TextBox1.Text;
-                selected.description = TextBox2.Text;
-                selected.acquisition_date = Convert.ToDateTime(TextBox3.Text);
-                selected.condition = TextBox4.Text;
-                selected.cost = Convert.ToDecimal(TextBox5.Text);
-            }
-            context.SaveChanges();
-            ArtifactDgr.ItemsSource = context.Artifacts.ToList();
-
-        }
+  
 
     }
 }
