@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище yyyyyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Artifacts">
+    <Key>
+      <PropertyRef Name="ArtifactID" />
+    </Key>
+    <Property Name="ArtifactID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArtifactName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ArtifactDescription" Type="nvarchar(max)" />
+    <Property Name="Century" Type="nvarchar" MaxLength="50" />
+    <Property Name="MuseumID" Type="int" />
+    <Property Name="CategoryID" Type="int" />
+  </EntityType>
+  <EntityType Name="ArtifactsCategories">
+    <Key>
+      <PropertyRef Name="ArtifactID" />
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="ArtifactID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="categoryDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Museums">
+    <Key>
+      <PropertyRef Name="MuseumID" />
+    </Key>
+    <Property Name="MuseumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Artifacts__Artif__5165187F">
+    <End Role="Artifacts" Type="Self.Artifacts" Multiplicity="1" />
+    <End Role="ArtifactsCategories" Type="Self.ArtifactsCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Artifacts">
+        <PropertyRef Name="ArtifactID" />
+      </Principal>
+      <Dependent Role="ArtifactsCategories">
+        <PropertyRef Name="ArtifactID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Artifacts__Categ__4E88ABD4">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Artifacts" Type="Self.Artifacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Artifacts">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Artifacts__Categ__52593CB8">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+    <End Role="ArtifactsCategories" Type="Self.ArtifactsCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="ArtifactsCategories">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Artifacts__Museu__4D94879B">
+    <End Role="Museums" Type="Self.Museums" Multiplicity="0..1" />
+    <End Role="Artifacts" Type="Self.Artifacts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Museums">
+        <PropertyRef Name="MuseumID" />
+      </Principal>
+      <Dependent Role="Artifacts">
+        <PropertyRef Name="MuseumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище yyyyyModelContainer">
+    <EntitySet Name="Artifacts" EntityType="Self.Artifacts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ArtifactsCategories" EntityType="Self.ArtifactsCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Museums" EntityType="Self.Museums" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Artifacts__Artif__5165187F" Association="Self.FK__Artifacts__Artif__5165187F">
+      <End Role="Artifacts" EntitySet="Artifacts" />
+      <End Role="ArtifactsCategories" EntitySet="ArtifactsCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Artifacts__Categ__4E88ABD4" Association="Self.FK__Artifacts__Categ__4E88ABD4">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Artifacts" EntitySet="Artifacts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Artifacts__Categ__52593CB8" Association="Self.FK__Artifacts__Categ__52593CB8">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="ArtifactsCategories" EntitySet="ArtifactsCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Artifacts__Museu__4D94879B" Association="Self.FK__Artifacts__Museu__4D94879B">
+      <End Role="Museums" EntitySet="Museums" />
+      <End Role="Artifacts" EntitySet="Artifacts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
