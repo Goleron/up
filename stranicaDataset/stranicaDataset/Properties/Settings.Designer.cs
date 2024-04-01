@@ -32,5 +32,16 @@ namespace stranicaDataset.Properties {
                 return ((string)(this["uchebConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=GOLERTON\\SQLEXPRESS01;Initial Catalog=dedede;Integrated Security=True" +
+            "")]
+        public string dededeConnectionString {
+            get {
+                return ((string)(this["dededeConnectionString"]));
+            }
+        }
     }
 }

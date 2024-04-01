@@ -55,11 +55,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="uchebDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>uchebDataSet.xsd</DependentUpon>
-    </Compile>
     <Page Include="Artifact.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +69,11 @@
     </Compile>
     <Compile Include="Artifact.xaml.cs">
       <DependentUpon>Artifact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="dededeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dededeDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -105,20 +105,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="dededeDataSet.xsc">
+      <DependentUpon>dededeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dededeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dededeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dededeDataSet.xss">
+      <DependentUpon>dededeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="uchebDataSet.xsc">
-      <DependentUpon>uchebDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="uchebDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>uchebDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="uchebDataSet.xss">
-      <DependentUpon>uchebDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

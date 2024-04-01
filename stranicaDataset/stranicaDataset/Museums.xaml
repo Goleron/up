@@ -9,6 +9,43 @@
       Title="MuseumsPage">
 
     <Grid>
-        <DataGrid x:Name="MuseumsDataGrid"/>
+        <DataGrid x:Name="MuseumsDataGrid" Margin="0,0,0,250"/>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Label Content="Подпись 1" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox1"  Width="100"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Label Content="Подпись 2" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox2"  Width="100"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Label Content="Подпись 3" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox3"  Width="100"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Label Content="Подпись 4" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox4"  Width="100"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <Label Content="Подпись 5" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="TextBox5"  Width="100"/>
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,20,10,10">
+                <Button x:Name="AddButton" Content="Добавить" Click="AddButton_Click" Margin="5"/>
+                <Button x:Name="UpdateButton" Content="Обновить" Click="UpdateButton_Click" Margin="5"/>
+                <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Margin="5"/>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Page>

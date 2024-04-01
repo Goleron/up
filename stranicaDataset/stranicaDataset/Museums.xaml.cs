@@ -1,33 +1,71 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using stranicaDataset.uchebDataSetTableAdapters;
-
+using stranicaDataset.dededeDataSetTableAdapters;
 
 namespace stranicaDataset
 {
-    /// <summary>
-    /// Логика взаимодействия для Museums.xaml
-    /// </summary>
     public partial class MuseumsPage : Page
     {
         MuseumsTableAdapter museums = new MuseumsTableAdapter();
+
         public MuseumsPage()
         {
             InitializeComponent();
-            MuseumsDataGrid.ItemsSource = museums.GetData();
+            ReloadDataGrid();
+        }
 
+        private void ReloadDataGrid()
+        {
+            MuseumsDataGrid.ItemsSource = museums.GetData();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.TryParse(TextBox1.Text, out int result))
+            {
+                museums.InsertQuery(TextBox1.Text,TextBox2.Text, TextBox3.Text, TextBox4.Text, TextBox5.Text);
+                ReloadDataGrid();
+            }
+            else
+            {
+                MessageBox.Show("Неверный ввод ID. Пожалуйста, введите допустимое число.");
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MuseumsDataGrid.SelectedItem is DataRowView dataRowView)
+            {
+                object id = dataRowView.Row[0];
+                if (int.TryParse(id.ToString(), out int idInt))
+                {
+                    museums.DeleteQuery(idInt);
+                    ReloadDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный ID. Удаление невозможно.");
+                }
+            }
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MuseumsDataGrid.SelectedItem is DataRowView dataRowView)
+            {
+                object id = dataRowView.Row[0];
+                if (int.TryParse(id.ToString(), out int idInt))
+                {
+                    museums.UpdateQuery(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text, TextBox5.Text, idInt);
+                    ReloadDataGrid();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный ID. Обновление невозможно.");
+                }
+            }
         }
     }
 }
