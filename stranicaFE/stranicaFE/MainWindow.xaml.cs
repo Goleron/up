@@ -25,12 +25,12 @@ namespace stranicaFE
 
         private void ArtifactButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ArtifactPage());
+            MainFrame.Navigate(new Artifact());
         }
 
         private void MuseumButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new MuseumsPage());
+            MainFrame.Navigate(new Museums());
         }
     }
 }

@@ -14,15 +14,20 @@ namespace stranicaFE
     
     public partial class Artifacts
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Artifacts()
+        {
+            this.Museums = new HashSet<Museums>();
+        }
+    
         public int artifact_id { get; set; }
         public string name { get; set; }
-        public string category { get; set; }
         public string description { get; set; }
-        public Nullable<System.DateTime> acquisition_date { get; set; }
+        public System.DateTime acquisition_date { get; set; }
         public string condition { get; set; }
-        public Nullable<decimal> cost { get; set; }
-        public Nullable<int> museum_id { get; set; }
+        public decimal cost { get; set; }
     
-        public virtual Museums Museums { private get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Museums> Museums { private get; set; }
     }
 }

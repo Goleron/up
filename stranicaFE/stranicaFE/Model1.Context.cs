@@ -13,10 +13,10 @@ namespace stranicaFE
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class uchebEntities : DbContext
+    public partial class ioioEntities : DbContext
     {
-        public uchebEntities()
-            : base("name=uchebEntities")
+        public ioioEntities()
+            : base("name=ioioEntities")
         {
         }
     
