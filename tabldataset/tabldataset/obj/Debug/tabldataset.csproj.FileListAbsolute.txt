@@ -1,0 +1,15 @@
+C:\Users\79152\source\repos\tabldataset\tabldataset\bin\Debug\tabldataset.exe.config
+C:\Users\79152\source\repos\tabldataset\tabldataset\bin\Debug\tabldataset.exe
+C:\Users\79152\source\repos\tabldataset\tabldataset\bin\Debug\tabldataset.pdb
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset.csproj.AssemblyReference.cache
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\MainWindow.g.cs
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\App.g.cs
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset_MarkupCompile.cache
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset_MarkupCompile.lref
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\MainWindow.baml
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset.g.resources
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset.Properties.Resources.resources
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset.csproj.GenerateResource.cache
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset.csproj.CoreCompileInputs.cache
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset.exe
+C:\Users\79152\source\repos\tabldataset\tabldataset\obj\Debug\tabldataset.pdb
